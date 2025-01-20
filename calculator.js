@@ -7,16 +7,20 @@ function removeNumber() {
   if (result.innerText === "0") {
     return
   }
-  const removedText = result.innerText.slice(0, -1)
-  const resultText = removedText.length === 0 ? "0" : removedText
-  result.innerText = resultText
+
+  if (result.innerText.length === 1) {
+    result.innerText = "0"
+    return
+  }
+
+  result.innerText = result.innerText.slice(0, -1)
 }
 
 function addNumber(number) {
   if (result.innerText === "0") {
     result.innerText = number
   } else {
-    result.innerText = result.innerText + number
+    result.innerText += number
   }
 }
 
@@ -61,16 +65,10 @@ function handleClicks(event) {
           instruction = ""
           break
         case "÷":
-          setInstruction("÷")
-          break
         case "×":
-          setInstruction("×")
-          break
         case "-":
-          setInstruction("-")
-          break
         case "+":
-          setInstruction("+")
+          setInstruction(button.innerText)
           break
         case "=":
           handleOperation()
